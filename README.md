@@ -108,7 +108,7 @@ Main columns:
 | `argmax_layer_p` | position `l / L` of the heaviest block |
 | `num_dead_blocks` | blocks with `c_l < 1e-3` |
 | `best_affine_section_length` | longest accepted affine section, in blocks |
-| `disp_mean`, `disp_max` | displacement `|z_{l+1} - z_l|` of the tracked training points |
+| `disp_mean`, `disp_max` | displacement `\|z_{l+1} - z_l\|` of the tracked training points |
 | `jump_score` | robust outlier score of a block within its network |
 
 ### Diagnostics
@@ -171,8 +171,8 @@ blocks except the first and the last.
 | column | meaning |
 |---|---|
 | `affine_error_bulk` | median increment-normalised error of one-block fits, held out |
-| `norm_growth_bulk` | `|h_{L-1}| / |h_1|` (median norms) |
-| `step_bulk`, `path_bulk` | median step and path length over the bulk, in units of `|h_1|` |
+| `norm_growth_bulk` | `\|h_{L-1}\| / \|h_1\|` (median norms) |
+| `step_bulk`, `path_bulk` | median step and path length over the bulk, in units of `\|h_1\|` |
 | `last_block_contraction_over_bulk` | contraction of the last block over the bulk median |
 | `mlp_jacobian_bulk_sum` | sum over the bulk of the median Jacobian norm of the MLP branch |
 | `removable_share_bulk_median` | share of the MLP cost removed by rebalancing (SwiGLU) |
