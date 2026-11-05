@@ -1,0 +1,27 @@
+# Quick check that everything runs (about a minute on a laptop CPU).
+name: smoke
+output_dir: outputs
+data:
+  path: data/magic04.data
+  val_fraction: 0.2
+model:
+  width: 6
+  init:
+    block_scale: 0.3
+    head_scale: 0.3
+    depth_scaling: false
+objective:
+  lambda_res: 2.0e-3
+  lambda_out: 1.0e-6
+sweep:
+  depths: [4, 8]
+  seeds: [0, 1]
+optimizer:
+  adam_steps: 200
+  adam_lr: 1.0e-3
+  warmup_steps: 20
+  min_lr_ratio: 0.05
+  lbfgs_steps: 100
+  lbfgs_history: 100
+  lbfgs_tolerance_grad: 1.0e-7
+  lbfgs_tolerance_change: 1.0e-9
