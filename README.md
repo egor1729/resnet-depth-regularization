@@ -15,8 +15,7 @@ Python 3.10 or newer.
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt                 # depth sweeps
-pip install -r requirements-open-weights.txt    # additionally, open-weight models
+pip install .
 ```
 
 A CPU-only build of PyTorch is enough, for example
