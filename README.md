@@ -15,11 +15,12 @@ Python 3.10 or newer.
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
-pip install .
+pip install ".[test]"                 # depth sweeps and tests
+pip install ".[open-weights,test]"    # additionally, the open-weight models
 ```
 
 A CPU-only build of PyTorch is enough, for example
-`pip install torch --index-url https://download.pytorch.org/whl/cpu` before the line
+`pip install torch --index-url https://download.pytorch.org/whl/cpu` before the lines
 above. The MAGIC data (1.5 MB) are downloaded from the UCI repository into `data/` on
 first use and checked against a checksum.
 
@@ -155,7 +156,9 @@ What is measured (`resnet_theory/open_weights.py`, `resnet_theory/anatomy.py`):
 - Affine fits of every section on 48 windows, evaluated on 16 held-out windows. The error
   is normalised by the spread of the increment `h_e - h_s`, not of `h_e`, so 0 means
   affine and 1 means no better than a constant. The scan of part 1 is run with thresholds
-  of 30% (train and held-out) and 50% (probes that perturb the stream and rerun the model).
+  of 30% (train and held-out) and 50% (probes that perturb the stream and rerun the model,
+  up to 100% for weak sections), splits at jump scores of at least 4, and a minimal
+  section length of `max(2, round(0.1 L))`.
 - Norm escape on 32 windows: median stream norms, absolute step sizes and path length,
   in units of the median stream norm `|h_1|` after the first block.
 - Contraction and expansion of the fitted one-block maps (sums of negative and positive log
